@@ -1,9 +1,18 @@
+/* CSS Adapted from the following: 
+   https://dev.to/ayushmanbthakur/how-to-make-tic-tac-toe-in-browser-with-html-css-and-js-28ed
+   https://reactjs.org/tutorial/tutorial.html
+*/
+
+* {
+    font: Arial, Helvetica, sans-serif;
+}
+
 body {
-    font: 14px "Century Gothic", Futura, sans-serif;
-    margin: 20px;
+    background: #eee;
 }
 
 ol, ul {
+    margin: 20px;
     padding-left: 30px;
 }
 
@@ -18,22 +27,31 @@ ol, ul {
 }
 
 .square {
+    display: flex;
     background: #fff;
-    border: 1px solid #999;
+    border: 3px solid black;
     float: left;
-    font-size: 24px;
+    font-size: 3rem;
     font-weight: bold;
     line-height: 34px;
-    height: 34px;
+    height: 100px;
     margin-right: -1px;
     margin-top: -1px;
     padding: 0;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    width: 34px;
+    width: 100px;
+    transition: background 0.2s ease-in-out
 }
 
     .square:focus {
         outline: none;
+    }
+
+    .square:hover {
+        cursor: pointer;
+        background: #eef0f1;
     }
 
 .kbd-navigation .square:focus {
@@ -42,9 +60,23 @@ ol, ul {
 
 .game {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    width: 300px;
+    height: 300px;
+    min-height: 100vh;
+    min-height: 100vh;
+    background: #eee;
+}
+
+#root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #eee;
 }
 
 .game-info {
-    margin-left: 20px;
+    margin: 20px;
 }

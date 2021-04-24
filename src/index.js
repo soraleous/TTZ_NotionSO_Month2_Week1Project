@@ -4,7 +4,7 @@ import './index.css';
 
 /* Code Adapted from https://reactjs.org/tutorial/tutorial.html */
 
-/* Square is a Function component as it only contains a render method and dont have their own state */
+/* Square is a Function component as it only contains a render method and does not need to check states */
 function Square(props) {
     return (
         /* onClick prop on built-in DOM <button> will tell React to setup a click listener,
@@ -21,7 +21,7 @@ function Square(props) {
 class Board extends React.Component {
 
     renderSquare(i) {
-        /* Read the state value and return it (Either null,X,or O).
+        /* Reads the state value and return it (Either 'null', 'X', or 'O').
          * Board component maintains which squares are filled, but cannot update states from Squares,
          * So we will pass down the function when the square is clicked  */
         return (
@@ -100,7 +100,7 @@ class Game extends React.Component {
         });
     }
 
-    // Use most recvent history entry to determine and display the game's status
+    // Use most recent history entry to determine and display the game's status
     render() {
         const history = this.state.history;
         // current always render selected move according to stepNumber only.
@@ -108,25 +108,27 @@ class Game extends React.Component {
         const winner = calculateWinner(current.squares);
 
         // moves for rerolling to past moves stored in history
-
         const moves = history.map((step, move) => {
             const desc = move ?
-                'Go to move #' + move :
-                'Go to game start';
+                'Go to Move #' + move :
+                'Go to Start';
             return (
                 // For each move create a list item that contains a button which then has a method to jump back to previous move.
                 // unique ID key for lists is the 'moves' as they are never modified throughout.
                 <li key={move}>
-                    <button onClick={() => this.jumpTo(move)}>{desc}</button>
+                    <button class="btn btn-secondary p-1" onClick={() => this.jumpTo(move)}>{desc}</button>
                 </li>
             );
         });
 
         let status;
-        if (winner) {
+        if (this.state.stepNumber === 9 && winner === null) {
+            status = 'Draw!';
+        } else if (winner) {
             status = 'Winner: ' + winner;
         } else {
             status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+
         }
 
         return (
@@ -138,8 +140,8 @@ class Game extends React.Component {
                     />
                 </div>
                 <div className="game-info">
-                    <div>{status}</div>
-                    <ol>{moves}</ol>
+                    <div class="display-6 p-1">{status}</div>
+                    <ol class="">{moves}</ol>
                 </div>
             </div>
         );
