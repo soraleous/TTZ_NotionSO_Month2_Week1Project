@@ -115,8 +115,8 @@ class Game extends React.Component {
             return (
                 // For each move create a list item that contains a button which then has a method to jump back to previous move.
                 // unique ID key for lists is the 'moves' as they are never modified throughout.
-                <li key={move}>
-                    <button class="btn btn-secondary p-1" onClick={() => this.jumpTo(move)}>{desc}</button>
+                <li class="pb-1" key={move}>
+                    <button class="btn btn-secondary" onClick={() => this.jumpTo(move)}>{desc}</button>
                 </li>
             );
         });
@@ -141,7 +141,11 @@ class Game extends React.Component {
                 </div>
                 <div className="game-info">
                     <div class="display-6 p-1">{status}</div>
-                    <ol class="">{moves}</ol>
+                    <hr />
+                    <ol class="h2 text-muted">
+                        <p class="display-6 p-1 lead text-muted">History:</p>
+                        {moves}
+                    </ol>
                 </div>
             </div>
         );
